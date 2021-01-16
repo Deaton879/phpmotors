@@ -1,0 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=B612+Mono:wght@700&family=Source+Code+Pro&display=swap');
+
+$header-font : 'B612 Mono', monospace;
+$body-font : 'Source Code Pro', monospace;
+
+p, a, li {font-family: $body-font;}
+h1, h2, h3, h4, h5, h6, nav li {font-family: $header-font;}
+
