@@ -226,4 +226,12 @@ footer p {
     margin-left: 1em;
   }
 }
+
+#error {
+  padding: 1em;
+}
+
+#error h1, #error p {
+  margin: auto;
+}
 /*# sourceMappingURL=styles.css.map */
