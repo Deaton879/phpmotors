@@ -189,3 +189,21 @@ footer {
         margin: auto;
     }
 }
+
+// Login/Register Forms
+.formHeading { 
+    padding-left: 1em;
+}
+.login_register {
+    padding-left: 1em;
+}
+.clickLink {
+    padding-left: 1em;
+    :hover {
+        text-shadow: -1px 1px 3px $med-gray;
+    }
+}
+#formSpan {
+    padding-left: 1em;
+    font-variant: all-small-caps;
+}

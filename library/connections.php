@@ -23,6 +23,6 @@ function phpmotorsConnect() {
     }
     
 }
-phpmotorsConnect();
+//phpmotorsConnect();
 
 ?>

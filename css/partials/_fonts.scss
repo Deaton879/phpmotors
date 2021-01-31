@@ -3,6 +3,13 @@
 $header-font : 'B612 Mono', monospace;
 $body-font : 'Source Code Pro', monospace;
 
-p, a, li {font-family: $body-font;}
-h1, h2, h3, h4, h5, h6, nav li {font-family: $header-font;}
+p, a, li, input, label {font-family: $body-font;}
+h1, h2, h3, h4, h5, h6, nav li, #formSpan {font-family: $header-font;}
 
+.formHeading {
+    font-family: $body-font;
+}
+
+label, input {
+    font-weight: bold;
+}
