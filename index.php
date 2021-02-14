@@ -4,7 +4,7 @@ require_once './library/connections.php';
 // Get the PHP Motors model for use as needed
 require_once './model/main-model.php';
 
-$classifications = getClassifications();
+$classifications = getClassifications(1);
 $navList = '<ul>';
 $navList .= "<li><a href='/phpmotors/index.php' title='View the PHP Motors home page'>Home</a></li>";
 
@@ -25,6 +25,6 @@ switch ($action) {
 
     default:
         include './view/home.php';
-
+        break;
 }
 ?>

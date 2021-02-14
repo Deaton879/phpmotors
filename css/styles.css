@@ -235,16 +235,26 @@ footer p {
   }
 }
 
+.child_page_main h1 {
+  padding-left: 1em;
+}
+
+.child_page_main #formSpan {
+  padding-left: 1em;
+  font-variant: all-small-caps;
+  color: red;
+}
+
+.child_page_main form {
+  padding-left: 1.5em;
+}
+
 #error {
   padding: 1em;
 }
 
 #error h1, #error p {
   margin: auto;
-}
-
-.formHeading {
-  padding-left: 1em;
 }
 
 .login_register {
@@ -257,10 +267,5 @@ footer p {
 
 .clickLink :hover {
   text-shadow: -1px 1px 3px #8d8d8d;
-}
-
-#formSpan {
-  padding-left: 1em;
-  font-variant: all-small-caps;
 }
 /*# sourceMappingURL=styles.css.map */

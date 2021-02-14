@@ -181,6 +181,21 @@ footer {
     }
 }
 
+.child_page_main {
+    h1 { 
+        padding-left: 1em;
+    }
+
+    #formSpan {
+        padding-left: 1em;
+        font-variant: all-small-caps;
+        color: red;
+    }
+
+    form {
+        padding-left: 1.5em;
+    }
+}
 // Error Page
 
 #error {
@@ -191,9 +206,7 @@ footer {
 }
 
 // Login/Register Forms
-.formHeading { 
-    padding-left: 1em;
-}
+
 .login_register {
     padding-left: 1em;
 }
@@ -203,7 +216,4 @@ footer {
         text-shadow: -1px 1px 3px $med-gray;
     }
 }
-#formSpan {
-    padding-left: 1em;
-    font-variant: all-small-caps;
-}
+
