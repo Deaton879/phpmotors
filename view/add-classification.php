@@ -13,7 +13,11 @@
     ?>
     <form action="/phpmotors/vehicles/index.php" method="POST">
         <label for="classificationName">Classification Name</label><br>
-        <input type="text" name="classificationName" id="classificationName"><br><br>
+        <input type="text" name="classificationName" id="classificationName" <?php 
+        if (isset($invMake)) {
+            echo "value='$invStock'";
+        }
+        ?> required><br><br>
         <input type="submit" name="submit" value="Add Classification">
         <!-- Add the action name - value pair -->
         <input type="hidden" name="action" value="addClassification">

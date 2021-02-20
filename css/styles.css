@@ -257,6 +257,10 @@ footer p {
   margin: auto;
 }
 
+.passParam {
+  font-size: smaller;
+}
+
 .login_register {
   padding-left: 1em;
 }

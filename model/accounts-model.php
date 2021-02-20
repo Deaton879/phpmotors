@@ -1,9 +1,8 @@
-<!-- Accounts Model -->
-
-
-
-<!-- This function will handle site registrations -->
 <?php 
+
+//Accounts Model
+
+//This function will handle site registrations
 
 function regClient($clientFirstname, $clientLastname, $clientEmail, $clientPassword) {
     // Create a connection object using the phpmotors connection function
