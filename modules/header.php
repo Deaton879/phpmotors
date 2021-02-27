@@ -13,7 +13,18 @@
         <header>
             <div id="top-header">
                 <img src="/phpmotors/images/site/logo.png" alt="PHP Motors logo" id="logo">
-                <a href="/phpmotors/accounts/index.php" title="Login or Register with PHP Motors" id="acc">My Account</a>
+                <div id="accountLinks">
+                    <?php 
+                        if($_SESSION['loggedin']) {
+                            echo "<span id='welcome'><a href='/phpmotors/accounts?action=admin' title='Account Management'>Welcome ", $_SESSION['clientData']['clientFirstname'],"</a></span>";
+                            echo "<a href='/phpmotors/accounts?action=logout' title='Logout from your account'>Logout</a>";
+                        }
+                        else {
+                            echo "<a href='/phpmotors/accounts?action=login' title='Login or Register with PHP Motors'>My Account</a>";
+                        }
+                    ?>
+                    
+                </div>
             </div>
         </header>
         

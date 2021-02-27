@@ -26,7 +26,7 @@
         <label for="clientPassword">Password</label>
         <span>Passwords must be at least 8 characters and contain at least 1 number, 1 capital letter and 1 special character</span><br>
         <input type="password" id="clientPassword" name="clientPassword" id="password" required pattern="(?=^.{8,}$)(?=.*\d)(?=.*\W+)(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"><br>
-        <input type="submit" value="Register">
+        <input type="submit" value="register">
         <!-- Add the action name - value pair -->
         <input type="hidden" name="action" value="register">
     </form> 

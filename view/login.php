@@ -8,11 +8,11 @@
 
     <h1>Sign In</h1>
     <?php
-    if (isset($message)) {
-    echo $message;
+    if (isset($_SESSION['message'])) {
+        echo $_SESSION['message'];
     }
     ?>
-    <form action="/phpmotors/accounts/index.php" method="post" class="login_register">
+    <form action="/phpmotors/accounts/" method="post" class="login_register">
         <label for="clientEmail">Email</label><br>
         <input type="email" id="clientEmail" name="clientEmail" <?php if(isset($clientEmail)){echo "value='$clientEmail'";}  ?> required><br>
         <label for="clientPassword">Password</label>
@@ -21,6 +21,6 @@
         <input type="hidden" id="action" name="action" value="login">
         <input type="submit" value="Submit">
     </form> 
-    <div class="clickLink"><a href="/phpmotors/accounts?action=register" title="Register a new account" id="newAccount">Not a member yet?</a></div>
+    <div class="clickLink"><a href="/phpmotors/accounts?action=newacct" title="Register a new account" id="newAccount">Not a member yet?</a></div>
 
 <?php include $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/modules/footer.php'; ?>

@@ -1,3 +1,9 @@
+<?php
+    // If no user (with a minimum clientLevel of 3) is logged in, re-route to the home page 
+    if(!$_SESSION['loggedin'] || $_SESSION['clientData']['clientLevel'] < 3 ) {
+        header('Location: /phpmotors');
+    }
+?>
 <?php // Create the (dropdown) select element listing classificationName with Id linked to each element's value attribute
 $classificationList = '<label for="classificationId">Class</label><br>';
 $classificationList .= '<select name="classificationId" id="classificationId" required>';

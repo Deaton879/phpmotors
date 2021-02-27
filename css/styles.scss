@@ -3,18 +3,23 @@
 
 body {
     margin: 0;
+    a{text-decoration: none;}
+    li {list-style: none;}
+
 }
 
 #top-header {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    #acc {
-        text-decoration: none;
-        color: $med-gray;
-        margin-right: 3em;
-        margin-top: 1.5em;
+    #accountLinks {
+        display: flex;
+        flex-direction: column;
+        text-align: right;
         font-size: large;
+        color: $med-gray;
+        margin-right: 1em;
+        a:hover {text-shadow: -1px 1px 3px $lite-gray;}
     }
 }
 
@@ -219,3 +224,32 @@ footer {
     }
 }
 
+#welcome {
+    margin: auto;
+}
+
+#loggedin {
+    margin: -2em 0 0 2.5em;
+    color: $dark-blue;
+    font-variant: all-small-caps;
+}
+
+#adminList {
+    width: 25em;
+    border: 5px ridge $dark-blue;
+    padding: 1em;
+    margin-left: 2em;
+    li {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        
+        .listBold {
+            font-family: $header-font;
+            font-variant-caps: titling-caps;
+        }
+        .listItalic {
+            font-family: $body-font;
+        }
+    }
+}

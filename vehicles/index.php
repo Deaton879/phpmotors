@@ -1,4 +1,6 @@
 <?php
+// Create or access a Session
+session_start();
 // Get the dtabase connection file
 require_once '../library/connections.php';
 // Get the acme model

@@ -1,3 +1,9 @@
+<?php
+    // If no user (with a minimum clientLevel of 3) is logged in, re-route to the home page 
+    if(!$_SESSION['loggedin'] || $_SESSION['clientData']['clientLevel'] < 3 ) {
+        header('Location: /phpmotors');
+    }
+?>
 <?php include $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/modules/header.php'; ?>
 
 <nav>

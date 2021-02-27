@@ -16,7 +16,7 @@ function checkEmail($clientEmail) {
 function buildNav($classifications) {
     // Create the navigation bar
     $navList = '<ul>';
-    $navList .= "<li><a href='../index.php' title='View the PHP Motors home page'>Home</a></li>";
+    $navList .= "<li><a href='/phpmotors/' title='View the PHP Motors home page'>Home</a></li>";
 
     foreach ($classifications as $classification) {
         $navList .= "<li><a href='/phpmotors/index.php?action=" . urlencode($classification['classificationName']) . "' title='View our $classification[classificationName] product line'>$classification[classificationName]</a></li>";
