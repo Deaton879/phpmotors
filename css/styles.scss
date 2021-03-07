@@ -192,11 +192,14 @@ footer {
     }
 
     #formSpan {
-        padding-left: 1em;
+        text-align: center;
         font-variant: all-small-caps;
         color: red;
     }
-
+    .error {
+        color: red;
+        padding-left: 1em;
+    }
     form {
         padding-left: 1.5em;
     }
@@ -229,9 +232,14 @@ footer {
 }
 
 #loggedin {
-    margin: -2em 0 0 2.5em;
-    color: $dark-blue;
+    margin: -1.5em 0 0 2.5em;
+    padding: 2px 10px;
+    color: #4c96d7;
     font-variant: all-small-caps;
+    background: black;
+    border-radius: 5px;
+    width: fit-content;
+    font-weight: bolder;
 }
 
 #adminList {
@@ -252,4 +260,22 @@ footer {
             font-family: $body-font;
         }
     }
+}
+
+div.marginal {
+    margin: 0 1em 1em 1em;
+    padding: 1em;
+    border: 5px ridge $dark-blue;
+    h2, h3 {font-variant: all-small-caps; color: $dark-blue;background-color: black; padding: 10px; border-radius: 5px;}
+    .form-button {
+        background: aliceblue;
+        border-radius: 5px;
+        padding: .5em;
+        width: 13em;
+    }
+    .form-button:hover {
+        background: $lite-gray;
+        cursor: pointer;
+    }
+    
 }

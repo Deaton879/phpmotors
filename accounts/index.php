@@ -20,6 +20,7 @@ if ($action == NULL) {
 }
 
 switch ($action) {
+
     case 'login':
         $clientEmail = filter_input(INPUT_POST, 'clientEmail', FILTER_SANITIZE_EMAIL);
         $clientEmail = checkEmail($clientEmail);
@@ -57,9 +58,11 @@ switch ($action) {
         // Send them to the admin view
         include '../view/admin.php';
         exit;
+
     case 'newacct':
         include '../view/register.php';
         break;
+        
     case 'register':
         /*
         echo 'You are in the register case statement.';
@@ -104,6 +107,7 @@ switch ($action) {
             exit;
         }
         break;
+
     // ADMIN case 
     case 'admin':
         if ($_SESSION['loggedin']) {
@@ -113,6 +117,102 @@ switch ($action) {
             header('Location: /phpmotors');
         }
         break;
+
+    case 'updateClient':
+        include '../view/client-update.php';
+        break;
+
+    case 'newPersonal':
+
+        $clientFirst = filter_input(INPUT_POST, 'clientFirst', FILTER_SANITIZE_STRING);
+        if($clientFirst != $_SESSION['clientData']['clientFirstname']) {
+            $_SESSION['clientData']['clientFirstname'] = $clientFirst;
+        }
+
+        $clientLast = filter_input(INPUT_POST, 'clientLast', FILTER_SANITIZE_STRING);
+        if($clientLast != $_SESSION['clientData']['clientLastname']) {
+            $_SESSION['clientData']['clientLastname'] = $clientLast;
+        }
+
+        
+        $clientE = filter_input(INPUT_POST, 'clientE', FILTER_SANITIZE_EMAIL);    
+        $clientId = filter_input(INPUT_POST, 'clientId', FILTER_SANITIZE_NUMBER_INT);
+
+        // Check for any missing data
+        if(empty($clientFirst) || empty($clientLast) || empty($clientE)) {
+            $message = '<span id="formSpan">*Please fill all empty fields in the form.</span>';
+            include '../view/client-update.php';
+            exit;
+        }
+
+        if($clientE != $_SESSION['clientData']['clientEmail']) {
+            $clientE = checkEmail($clientE);
+            $existingE = checkExistingEmail($clientE);
+            // Check for existing email address in the table
+            if($existingE = 0){
+                $message = '<p class="notice">That email address is already in use. Please try again.</p>';
+                include '../view/client-update.php';
+                exit;
+            }
+            else {
+                $_SESSION['clientData']['clientEmail'] = $clientE;
+                
+            }
+            
+        } 
+
+        // Send the data to the model
+        $updatedOutcome = updateClient($clientFirst, $clientLast, $clientE, $clientId);
+        
+        // Check and report the result
+        if($updatedOutcome === 1){
+            $_SESSION['message'] = "<b>$clientFirst, you've successfully updated your account information.</b>";
+            header('Location: /phpmotors/accounts/?action=admin');
+            exit;
+        } else {
+            $_SESSION['message'] = "<b>Sorry, but we could not update your information at this time. Please try again later.</b>";
+            include '../view/admin.php';
+            exit;
+        }
+
+        break;
+
+
+    case 'newPass':
+
+        $clientPass = filter_input(INPUT_POST, 'clientPass', FILTER_SANITIZE_STRING);
+        $checkPass = checkPassword($clientPass);
+        $clientId = filter_input(INPUT_POST, 'clientId', FILTER_SANITIZE_NUMBER_INT);
+        
+        // Check for any missing data
+        if(empty($checkPass)) {
+            $message1 = '<span id="formSpan">*Please submit a new password to proceed.</span>';
+            include '../view/client-update.php';
+            exit;
+        }
+
+        $idData = getClientById($clientId);
+
+        // Hash the checked password
+        $hashPass = password_hash($clientPass, PASSWORD_DEFAULT);
+
+        // Send the data to the model
+        $updatePass = updatePass($hashPass, $clientId);
+        
+        // Check and report the result
+        if($updatePass === 1){
+            $_SESSION['message'] = " $idData[clientFirstname], your password has been succesfully updated.";
+            header('Location: /phpmotors/accounts/?action=admin');
+            exit;
+        } else {
+            $_SESSION['message'] = "<p>Sorry, but we could not update your password at this time. Please try again later.</p>";
+            include '../view/admin.php';
+            exit;
+        }
+
+        break;
+
+
     // LOGOUT case
     case 'logout':
         // Unset all of the session variables.

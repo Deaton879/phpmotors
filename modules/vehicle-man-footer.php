@@ -7,7 +7,9 @@
 
             </footer>
         </div>
+        <script src="../js/inventory.js"></script>
     </body>
 
 
 </html>
+<?php unset($_SESSION['message']); ?>

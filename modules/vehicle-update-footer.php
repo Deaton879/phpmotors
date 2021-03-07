@@ -7,6 +7,7 @@
 
             </footer>
         </div>
+        <script src="../js/inventory.js"></script>
     </body>
 
 
