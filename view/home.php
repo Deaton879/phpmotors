@@ -17,7 +17,7 @@
         </div>
         <div id="img-container">
             <img src="./images/site/own_today.png" alt="Own Today button" id="img-button">
-            <img src="./images/delorean.jpg" alt="Image of a DMC Delorean" id="img-car">
+            <img src="./images/vehicles/delorean.jpg" alt="Image of a DMC Delorean" id="img-car">
         </div>
     </div>
     <div id="content">

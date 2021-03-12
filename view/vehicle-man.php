@@ -17,7 +17,7 @@
 <main class="child_page_main">
     <h1>Vehicle Management</h1>
     <ul id="adminList">
-        <li><b class="listBold"><a href="/phpmotors/vehicles?action=classification" title="Add a new car classification to the database">Add Classification</a></b></li>
+        <li><b class="listBold"><a href="/phpmotors/vehicles?action=newClassification" title="Add a new car classification to the database">Add Classification</a></b></li>
         <li><b class="listBold"><a href="/phpmotors/vehicles?action=vehicle" title="Add a new car to the database">Add Vehicle</a></b></li>
     </ul>
     <div class="marginal">

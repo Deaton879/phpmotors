@@ -1,6 +1,14 @@
 @import "partials/colors";
 @import "partials/fonts";
 
+html{
+    box-sizing: border-box;
+}
+   
+*, *:before, *:after{
+    box-sizing: inherit;
+}
+
 body {
     margin: 0;
     a{text-decoration: none;}
@@ -279,3 +287,95 @@ div.marginal {
     }
     
 }
+
+/* For vehicle display in classification view */
+#inv-display {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    padding-left: 0;
+}
+
+#inv-display h2{
+    font-size: 1.5rem;
+    font-variant: small-caps;
+    font-family: $header-font;
+}
+
+#inv-display li {
+    max-width: 200px;
+    flex: 1 0 auto;
+    text-align: center;
+    font-family: $header-font;
+    min-height: fit-content;
+    display: flex;
+    padding: 3px;
+    flex-direction: column;
+    justify-content: space-evenly;
+    border: $med-gray ridge 5px;
+    border-radius: 5px;
+    background-color: $lite-blue;
+    text-shadow: white 2px 1px 3px;
+    hr {
+        display: none;
+    }
+
+    span {
+        font-weight: bold;
+    }
+    img {
+        border-bottom: $med-gray ridge 5px;
+    }
+}
+  
+#inv-display {
+    width: 100%;
+    background-color: $dark-blue;
+    border-top: $dark-gray ridge 3px;
+    border-bottom: $dark-gray ridge 3px;
+    
+    .carThumb {
+        max-width: 100%;
+    }
+}
+
+
+
+.form {
+    .imgContainer {
+        width: fit-content;
+        margin: auto;
+    }
+    .description {
+        padding: 1em;
+    }
+
+    h2,h3 {
+        margin-left: .5em;
+        text-transform: uppercase;
+        font-family: $body-font;
+        background: #4c96d7;
+        padding: .5em;
+        border: black solid 2px;
+        border-top-left-radius: 25px;
+        border-bottom-left-radius: 25px;
+        text-shadow: -1px -1px 3px lightgrey;
+    }
+
+    h3 {
+        background-color: yellow;
+        padding: .5em;
+    }
+    b {
+        text-transform: uppercase;
+    }
+}
+
+.notice {
+    padding: 1em;
+    text-transform: uppercase;
+    font-weight: bold;
+    text-align: center;
+}
+
+@import 'partials/viewMobile';

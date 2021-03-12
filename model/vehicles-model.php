@@ -1,4 +1,5 @@
 <?php
+
 //Vehicles Model
 //This function will handle adding a new vehicle
 function regVehicle($classificationId, $invMake, $invModel, $invDescription, $invImage, $invThumbnail, $invPrice, $invStock, $invColor) {
@@ -97,7 +98,19 @@ function getInvItemInfo($invId){
     $stmt->execute();
     $invInfo = $stmt->fetch(PDO::FETCH_ASSOC);
     $stmt->closeCursor();
-    return $invInfo;
+    return $invInfo; 
+}
+
+// Get vehicle classification Name
+function getClassName($invId){
+    $db = phpmotorsConnect();
+    $sql = 'SELECT classificationName FROM carclassification WHERE classificationId = :invId';
+    $stmt = $db->prepare($sql);
+    $stmt->bindValue(':invId', $invId, PDO::PARAM_INT);
+    $stmt->execute();
+    $className = $stmt->fetch(PDO::FETCH_ASSOC);
+    $stmt->closeCursor();
+    return $className; 
 }
 
 function deleteVehicle($invId) {
@@ -110,4 +123,17 @@ function deleteVehicle($invId) {
     $stmt->closeCursor();
     return $rowsChanged;
 }
+
+function getVehiclesByClassification($classificationName) {
+    $db = phpmotorsConnect();
+    $sql = 'SELECT * FROM inventory WHERE classificationId IN (SELECT classificationId FROM carclassification WHERE classificationName = :classificationName)';
+    $stmt = $db->prepare($sql);
+    $stmt->bindValue(':classificationName', $classificationName, PDO::PARAM_STR);
+    $stmt->execute();
+    $vehicles = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $stmt->closeCursor();
+    return $vehicles;
+}
+
+
 ?>

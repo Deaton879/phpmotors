@@ -15,6 +15,16 @@ label, input {
   font-weight: bold;
 }
 
+html {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  -webkit-box-sizing: inherit;
+          box-sizing: inherit;
+}
+
 body {
   margin: 0;
 }
@@ -366,5 +376,141 @@ div.marginal .form-button {
 div.marginal .form-button:hover {
   background: #bababa;
   cursor: pointer;
+}
+
+/* For vehicle display in classification view */
+#inv-display {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row wrap;
+          flex-flow: row wrap;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  padding-left: 0;
+}
+
+#inv-display h2 {
+  font-size: 1.5rem;
+  font-variant: small-caps;
+  font-family: "B612 Mono", monospace;
+}
+
+#inv-display li {
+  max-width: 200px;
+  -webkit-box-flex: 1;
+      -ms-flex: 1 0 auto;
+          flex: 1 0 auto;
+  text-align: center;
+  font-family: "B612 Mono", monospace;
+  min-height: -webkit-fit-content;
+  min-height: -moz-fit-content;
+  min-height: fit-content;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 3px;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  border: #8d8d8d ridge 5px;
+  border-radius: 5px;
+  background-color: #a6cbeb;
+  text-shadow: white 2px 1px 3px;
+}
+
+#inv-display li hr {
+  display: none;
+}
+
+#inv-display li span {
+  font-weight: bold;
+}
+
+#inv-display li img {
+  border-bottom: #8d8d8d ridge 5px;
+}
+
+#inv-display {
+  width: 100%;
+  background-color: #4c96d7;
+  border-top: #3a3a3a ridge 3px;
+  border-bottom: #3a3a3a ridge 3px;
+}
+
+#inv-display .carThumb {
+  max-width: 100%;
+}
+
+.form .imgContainer {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin: auto;
+}
+
+.form .description {
+  padding: 1em;
+}
+
+.form h2, .form h3 {
+  margin-left: .5em;
+  text-transform: uppercase;
+  font-family: "Source Code Pro", monospace;
+  background: #4c96d7;
+  padding: .5em;
+  border: black solid 2px;
+  border-top-left-radius: 25px;
+  border-bottom-left-radius: 25px;
+  text-shadow: -1px -1px 3px lightgrey;
+}
+
+.form h3 {
+  background-color: yellow;
+  padding: .5em;
+}
+
+.form b {
+  text-transform: uppercase;
+}
+
+.notice {
+  padding: 1em;
+  text-transform: uppercase;
+  font-weight: bold;
+  text-align: center;
+}
+
+@media only screen and (max-width: 768px) {
+  #inv-display {
+    display: block;
+  }
+  #inv-display .carThumb {
+    max-width: 100%;
+  }
+  #inv-display li {
+    max-width: 300px;
+    margin: 5px auto;
+  }
+  nav ul {
+    -webkit-box-pack: space-evenly;
+        -ms-flex-pack: space-evenly;
+            justify-content: space-evenly;
+  }
+  #adminList {
+    margin: 1em auto;
+    max-width: -webkit-fit-content;
+    max-width: -moz-fit-content;
+    max-width: fit-content;
+  }
+  .form .imgContainer .carImg {
+    width: 95%;
+  }
 }
 /*# sourceMappingURL=styles.css.map */
