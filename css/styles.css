@@ -449,10 +449,41 @@ div.marginal .form-button:hover {
 }
 
 .form .imgContainer {
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
-  margin: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+}
+
+.form .imgContainer img {
+  border: 2px black solid;
+  border-radius: 5px;
+}
+
+.form .imgContainer .thumbnailList {
+  margin: 1em 4em 1em 1em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.form .imgContainer .thumbnailList li img {
+  width: 50%;
+  -webkit-transition: -webkit-transform .2s;
+  transition: -webkit-transform .2s;
+  transition: transform .2s;
+  transition: transform .2s, -webkit-transform .2s;
+  /* Animation */
+}
+
+.form .imgContainer .thumbnailList li img:hover {
+  -webkit-transform: scale(2);
+          transform: scale(2);
+  cursor: pointer;
 }
 
 .form .description {
@@ -478,6 +509,10 @@ div.marginal .form-button:hover {
 
 .form b {
   text-transform: uppercase;
+}
+
+.thumbnailList-bottom, #thumbHeading {
+  display: none;
 }
 
 .notice {
@@ -509,8 +544,49 @@ div.marginal .form-button:hover {
     max-width: -moz-fit-content;
     max-width: fit-content;
   }
+  .form .imgContainer {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap-reverse;
+        flex-wrap: wrap-reverse;
+  }
   .form .imgContainer .carImg {
     width: 95%;
+  }
+  .form .imgContainer .thumbnailList {
+    display: none;
+  }
+  #thumbGallery {
+    margin-left: 15px;
+  }
+  #thumbHeading {
+    display: block;
+    text-transform: uppercase;
+    font-family: "Source Code Pro", monospace;
+    margin-bottom: 0px;
+    background: #4c96d7;
+    padding: .5em;
+    border: black solid 2px;
+    border-top-left-radius: 25px;
+    border-bottom-left-radius: 25px;
+    text-shadow: -1px -1px 3px lightgrey;
+  }
+  .thumbnailList-bottom {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    margin: auto;
+    padding: 0px;
+  }
+  .thumbnailList-bottom li img {
+    max-width: 90%;
+    border: 2px black solid;
+    border-radius: 5px;
   }
 }
 /*# sourceMappingURL=styles.css.map */

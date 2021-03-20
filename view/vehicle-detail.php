@@ -3,7 +3,7 @@
     <?php echo $navList; ?> 
 </nav>
 
-<main class="child_page_main">
+<main class="vehicle-detail-main">
 
     <?php if(isset($message)){ echo $message; }?>
     <?php if(isset($infoDisplay)){ echo $infoDisplay; }?>

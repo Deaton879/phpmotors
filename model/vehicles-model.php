@@ -126,7 +126,10 @@ function deleteVehicle($invId) {
 
 function getVehiclesByClassification($classificationName) {
     $db = phpmotorsConnect();
-    $sql = 'SELECT * FROM inventory WHERE classificationId IN (SELECT classificationId FROM carclassification WHERE classificationName = :classificationName)';
+    $sql = 'SELECT invId, invMake, invModel, invStock, invColor, invPrice, classificationId, invDescription, imgPath FROM inventory 
+            join carClassification using (classificationId)
+            join images using (invId)
+            where imgPrimary = true and classificationName = :classificationName and imgPath Like "%-tn%"';
     $stmt = $db->prepare($sql);
     $stmt->bindValue(':classificationName', $classificationName, PDO::PARAM_STR);
     $stmt->execute();
@@ -135,5 +138,27 @@ function getVehiclesByClassification($classificationName) {
     return $vehicles;
 }
 
+
+function getThumbnails($invId) {
+    $db = phpmotorsConnect();
+    $sql = 'SELECT imgPath, imgName FROM images WHERE invId = :invId AND imgPath LIKE "%-tn%"';
+    $stmt = $db->prepare($sql);
+    $stmt->bindValue(':invId', $invId, PDO::PARAM_STR);
+    $stmt->execute();
+    $thumbnails = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $stmt->closeCursor();
+    return $thumbnails;
+}
+
+// Get information for all vehicles
+function getVehicles(){
+	$db = phpmotorsConnect();
+	$sql = 'SELECT invId, invMake, invModel FROM inventory';
+	$stmt = $db->prepare($sql);
+	$stmt->execute();
+	$invInfo = $stmt->fetchAll(PDO::FETCH_ASSOC);
+	$stmt->closeCursor();
+	return $invInfo;
+}
 
 ?>

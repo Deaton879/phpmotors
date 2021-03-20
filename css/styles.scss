@@ -343,8 +343,30 @@ div.marginal {
 
 .form {
     .imgContainer {
-        width: fit-content;
-        margin: auto;
+        display: flex;
+        width: 100%;
+
+        img {
+            border: 2px black solid;
+            border-radius: 5px;
+        }
+
+        .thumbnailList {
+            margin: 1em 4em 1em 1em;
+            display: flex;
+            flex-direction: column;
+            
+            li img {
+                width: 50%;
+                transition: transform .2s; /* Animation */
+            }
+
+            li img:hover {
+                transform: scale(2);
+                cursor: pointer;
+            }
+        }
+    
     }
     .description {
         padding: 1em;
@@ -371,6 +393,9 @@ div.marginal {
     }
 }
 
+.thumbnailList-bottom, #thumbHeading {
+    display: none;
+}
 .notice {
     padding: 1em;
     text-transform: uppercase;

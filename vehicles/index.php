@@ -190,11 +190,12 @@ switch ($action) {
         $invId = filter_input(INPUT_GET, 'invId', FILTER_SANITIZE_NUMBER_INT);
         $carId = getInvItemInfo($invId);
         $class = getClassName($carId['classificationId']);
-        
+        $thumbnails = getThumbnails($invId);
+
         if(!$carId) {
             $message = "<p class='notice'>Sorry, we're having trouble finding that vehicle in our inventory.<br> Please try again later.</p>";
             
-        }else {$infoDisplay = buildVehicleDetails($carId, $class['classificationName']);}
+        }else {$infoDisplay = buildVehicleDetails($carId, $class['classificationName'], $thumbnails);}
         
         include '../view/vehicle-detail.php';
     break;

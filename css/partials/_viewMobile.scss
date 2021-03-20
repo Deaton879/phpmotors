@@ -22,12 +22,48 @@
 
 	.form {
 		.imgContainer {
+			display: flex;
+			flex-wrap: wrap-reverse;
 			
 			.carImg {
-
 				width: 95%;
 			}
+
+			.thumbnailList {
+				display: none;
+			}
 		}
+
+		
 	}
-	
+
+	#thumbGallery {
+		margin-left: 15px;
+
+	}
+	#thumbHeading {
+		display: block;
+		text-transform: uppercase;
+		font-family: $body-font;
+		margin-bottom: 0px;
+		background: #4c96d7;
+		padding: .5em;
+		border: black solid 2px;
+		border-top-left-radius: 25px;
+		border-bottom-left-radius: 25px;
+		text-shadow: -1px -1px 3px lightgrey;
+		
+	}
+	.thumbnailList-bottom {
+		display: flex;
+		flex-direction: row;
+		margin: auto;
+		padding: 0px;
+		li img {
+			max-width: 90%;
+			border: 2px black solid;
+			border-radius: 5px;
+		}
+
+	}
 }
