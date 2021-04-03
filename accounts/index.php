@@ -53,6 +53,8 @@ switch ($action) {
         }
         // A valid user exists, log them in
         $_SESSION['loggedin'] = TRUE;
+        /*Delete the firstname cookie
+        unset($_COOKIE[$cookieFirstname]);*/
         // Remove the password from the array
         // the array_pop function removes the last
         // element from an array

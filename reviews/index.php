@@ -41,7 +41,7 @@ switch ($action) {
             exit;
         } else {
             $message = "<span #formSpan>*Did not successfully post the review*</span>";
-            include '../view/500.php';
+            header('location: /phpmotors/accounts/?action=admin');
             exit;
         }
         break;
@@ -104,7 +104,7 @@ switch ($action) {
 
     // Default statement
     default:
-
+        include '../view/login.php';
         break;
 }
 ?>
