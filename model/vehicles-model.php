@@ -138,7 +138,6 @@ function getVehiclesByClassification($classificationName) {
     return $vehicles;
 }
 
-
 function getThumbnails($invId) {
     $db = phpmotorsConnect();
     $sql = 'SELECT imgPath, imgName FROM images WHERE invId = :invId AND imgPath LIKE "%-tn%"';

@@ -352,13 +352,13 @@ footer p {
   font-family: "Source Code Pro", monospace;
 }
 
-div.marginal {
+div.marginal, form.marginal {
   margin: 0 1em 1em 1em;
   padding: 1em;
   border: 5px ridge #4c96d7;
 }
 
-div.marginal h2, div.marginal h3 {
+div.marginal h2, div.marginal h3, div.marginal label, form.marginal h2, form.marginal h3, form.marginal label {
   font-variant: all-small-caps;
   color: #4c96d7;
   background-color: black;
@@ -366,16 +366,38 @@ div.marginal h2, div.marginal h3 {
   border-radius: 5px;
 }
 
-div.marginal .form-button {
+div.marginal label, form.marginal label {
+  font-size: 2em;
+  padding: 2px 10px;
+  margin: auto;
+}
+
+div.marginal .form-button, form.marginal .form-button {
   background: aliceblue;
   border-radius: 5px;
   padding: .5em;
   width: 13em;
 }
 
-div.marginal .form-button:hover {
-  background: #bababa;
+div.marginal .form-button:hover, form.marginal .form-button:hover {
+  background: #3a3a3a;
   cursor: pointer;
+}
+
+div.marginal textarea, form.marginal textarea {
+  width: 90%;
+  padding: inherit;
+  border-radius: 10px;
+  font-family: "Source Code Pro", monospace;
+  font-weight: bold;
+  margin: 1em;
+  border-style: dotted;
+  border-color: black;
+}
+
+div.marginal #deleteReview, form.marginal #deleteReview {
+  background: gold;
+  border-color: darkred;
 }
 
 /* For vehicle display in classification view */
@@ -448,6 +470,20 @@ div.marginal .form-button:hover {
   max-width: 100%;
 }
 
+.form #reviewLink {
+  width: 100%;
+  display: inline-block;
+  text-align: right;
+  padding: 0px 5px 5px 0px;
+  font-weight: bold;
+  font-family: "Source Code Pro", monospace;
+  color: #4c96d7;
+}
+
+.form #reviewLink:hover {
+  color: #a6cbeb;
+}
+
 .form .imgContainer {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -504,7 +540,7 @@ div.marginal .form-button:hover {
 
 .form h3 {
   background-color: yellow;
-  padding: .5em;
+  padding: .5em .5em .5em 1em;
 }
 
 .form b {
@@ -520,6 +556,74 @@ div.marginal .form-button:hover {
   text-transform: uppercase;
   font-weight: bold;
   text-align: center;
+}
+
+#reviewsContainer .reviewsHeader {
+  margin-left: 15px;
+  display: block;
+  text-transform: uppercase;
+  font-family: "Source Code Pro", monospace;
+  margin-bottom: 0px;
+  background: #4c96d7;
+  padding: .5em .5em .5em 1em;
+  border: black solid 2px;
+  border-top-left-radius: 25px;
+  border-bottom-left-radius: 25px;
+  text-shadow: -1px -1px 3px lightgrey;
+}
+
+#reviewsContainer h3, #reviewsContainer h4, #reviewsContainer form {
+  margin-left: 15px;
+}
+
+div.reviewPost b {
+  font-family: "Source Code Pro", monospace;
+  background: black;
+  color: white;
+  padding: 6px;
+  border-radius: 10px;
+  font-size: small;
+}
+
+div.reviewPost b i {
+  color: #a6cbeb;
+}
+
+div.reviewPost p {
+  padding: 1.5em;
+  margin-left: .75em;
+  background-color: yellow;
+  border: 1px dashed;
+  color: black;
+  border-radius: 5px;
+  font-weight: 600;
+}
+
+#bottomShortcut {
+  display: block;
+  text-align: center;
+  margin: auto;
+  padding: .5em;
+}
+
+#bottomShortcut a {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  padding: .5em;
+  border: 2px black solid;
+  background: #a6cbeb;
+  border-radius: 6px;
+}
+
+#bottomShortcut a:hover {
+  background: #4c96d7;
+  color: #ffffff;
+}
+
+.subHead {
+  margin-left: 3em;
+  margin-top: -5px;
 }
 
 @media only screen and (max-width: 768px) {
@@ -566,7 +670,7 @@ div.marginal .form-button:hover {
     font-family: "Source Code Pro", monospace;
     margin-bottom: 0px;
     background: #4c96d7;
-    padding: .5em;
+    padding: .5em .5em .5em 1em;
     border: black solid 2px;
     border-top-left-radius: 25px;
     border-bottom-left-radius: 25px;
@@ -587,6 +691,9 @@ div.marginal .form-button:hover {
     max-width: 90%;
     border: 2px black solid;
     border-radius: 5px;
+  }
+  textarea#reviewText {
+    max-width: 95%;
   }
 }
 /*# sourceMappingURL=styles.css.map */

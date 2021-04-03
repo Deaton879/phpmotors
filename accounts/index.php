@@ -9,6 +9,10 @@ require_once '../model/main-model.php';
 require_once '../model/accounts-model.php';
 // Get the functions library
 require_once '../library/functions.php';
+// Get the reviews model
+require_once '../model/reviews-model.php';
+// Get the vehicles model
+require_once '../model/vehicles-model.php';
 
 $classifications = getClassifications();
 // Create the navigation bar
@@ -56,7 +60,7 @@ switch ($action) {
         // Store the array into the session
         $_SESSION['clientData'] = $clientData;
         // Send them to the admin view
-        include '../view/admin.php';
+        header('location: /phpmotors/accounts/?action=admin');
         exit;
 
     case 'newacct':
@@ -110,7 +114,19 @@ switch ($action) {
 
     // ADMIN case 
     case 'admin':
-        if ($_SESSION['loggedin']) {
+        $clientId = $_SESSION['clientData']['clientId'];
+        $oldReviews = getAllReviews($clientId);
+        $cars = array();
+        if ($_SESSION['loggedin']) {            
+            // Get the car make/model for each review, and create an array containing the car titles for each review
+            foreach($oldReviews as $review) {
+                print_r($review['reviewId']);
+                $carInfo = getInvItemInfo($review['invId']);
+                $carName = $carInfo["invMake"] . " " . $carInfo["invModel"];
+                array_push($cars, $carName);
+            }
+            
+            $buildPastReviews = buildPastReviews($oldReviews, $cars);
             include '../view/admin.php';
             break;
         } else { 

@@ -9,6 +9,10 @@ require_once '../model/main-model.php';
 require_once '../model/vehicles-model.php';
 // Get the functions library
 require_once '../library/functions.php';
+// Include the reviews-model
+require_once '../model/reviews-model.php';
+// Include the accounts-model
+require_once '../model/accounts-model.php';
 
 // Get car classification names for creating Navigation, and id's for use in the form select element. 
 $classifications = getClassifications();
@@ -58,11 +62,11 @@ switch ($action) {
             include '../view/add-vehicle.php';
             exit;
         }
-    break;
+        break;
         
     case 'newClassification':
         include '../view/add-classification.php';
-    break;
+        break;
 
     case 'addClassification':
         // Store the new Vehicle Classification
@@ -85,7 +89,7 @@ switch ($action) {
             include '../view/add-classification.php';
             exit;
         }
-    break;
+        break;
 
     /* * ********************************** 
     * Get vehicles by classificationId 
@@ -98,7 +102,7 @@ switch ($action) {
         $inventoryArray = getInventoryByClassification($classificationId); 
         // Convert the array to a JSON object and send it back 
         echo json_encode($inventoryArray); 
-    break;
+        break;
 
     case 'mod':
         $invId = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
@@ -108,7 +112,7 @@ switch ($action) {
         }
         include '../view/vehicle-update.php';
         exit;
-    break;
+        break;
 
     case 'del':
         $invId = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
@@ -118,7 +122,7 @@ switch ($action) {
 	    }
 	    include '../view/vehicle-delete.php';
 	    exit;
-    break;
+        break;
 
     case 'updateVehicle':
         $classificationId = filter_input(INPUT_POST, 'classificationId', FILTER_SANITIZE_NUMBER_INT);
@@ -149,7 +153,7 @@ switch ($action) {
             include '../view/vehicle-update.php';
             exit;
         }
-    break;
+        break;
 
 
     case 'deleteVehicle':
@@ -170,7 +174,7 @@ switch ($action) {
             header('location: /phpmotors/vehicles/');
             exit;
         }
-    break;
+        break;
 
     case 'classification':
         $classificationName = filter_input(INPUT_GET, 'classificationName', FILTER_SANITIZE_STRING);
@@ -183,7 +187,7 @@ switch ($action) {
         //echo $vehicleDisplay;
         //exit;
         include '../view/classification.php';
-    break;
+        break;
 
     // Display specific vehicle view
     case 'inv-display':
@@ -191,19 +195,29 @@ switch ($action) {
         $carId = getInvItemInfo($invId);
         $class = getClassName($carId['classificationId']);
         $thumbnails = getThumbnails($invId);
+        $reviews = getReviewsByInventoryId($invId);
+        $screenNames = array();
+
+        
+        foreach($reviews as $review) {
+            $client = buildScreenName($review["clientId"]);
+            
+            $screenName = substr($client['clientFirstname'], 0,1) . $client['clientLastname'];
+            array_push($screenNames, $screenName);
+        }
 
         if(!$carId) {
             $message = "<p class='notice'>Sorry, we're having trouble finding that vehicle in our inventory.<br> Please try again later.</p>";
             
-        }else {$infoDisplay = buildVehicleDetails($carId, $class['classificationName'], $thumbnails);}
+        }else {$infoDisplay = buildVehicleDetails($carId, $class['classificationName'], $thumbnails, $reviews, $screenNames);}
         
         include '../view/vehicle-detail.php';
-    break;
+        break;
 
     default:
         $classificationList = buildClassificationList($classifications);
 
         include '../view/vehicle-man.php';
-    break;
+        break;
 }
 ?>

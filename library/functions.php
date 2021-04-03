@@ -1,5 +1,6 @@
 <?php 
 
+
 function checkEmail($clientEmail) {
     $valEmail = filter_var($clientEmail, FILTER_SANITIZE_EMAIL);
     return $valEmail;
@@ -71,16 +72,20 @@ function buildVehicleDisplay($vehicles, $class) {
     return $dv;
 }
 
-function buildVehicleDetails($carId, $class, $thumbnails) {
+function buildVehicleDetails($carId, $class, $thumbnails, $reviews, $screenNames) {
     $price = number_format($carId['invPrice'], 2, '.',',');
-    $dv = "<div class='form'><h2>$carId[invMake] $carId[invModel] </h2>";
+    $dv = "<div class='form'><h2>$carId[invMake] $carId[invModel] </h2><a href='#reviewsContainer' id='reviewLink' title='Go to customer reviews'>Customer Reviews</a>";
     $dv .= "<div class='imgContainer'>
             <ul class='thumbnailList'>";
+    
+    // Build the vehicle thumbnails to left of main image for views larger than mobile
     foreach ($thumbnails as $thumbImage) {
         $dv .= '<li>';
         $dv .= "<img class='thumbCarList' src='$thumbImage[imgPath]' alt='Image of $thumbImage[imgName] on phpmotors.com'>"; 
         $dv .= '</li>'; 
-        }
+    }
+
+    // Build the main vehicle information
     $dv .= "</ul>
             <img class='carImg' src='$carId[invImage]' alt='image of $carId[invMake] $carId[invModel] on phpmotors.com'>
             </div>";
@@ -92,16 +97,63 @@ function buildVehicleDetails($carId, $class, $thumbnails) {
     }
     $dv .= "<p><b>Stock:</b> $carId[invStock] </p>";
     $dv .= "<p><b>Color:</b> $carId[invColor] </p></div></div><hr>";
+
+    // Build the thumbnail gallery for the bottom. If mobile view, then this will be displayed, otherwise, will not.
     $dv .= "<div id='thumbGallery'><h3 id='thumbHeading'>Gallery</h3><br><br>
             <ul class='thumbnailList-bottom'>";
+
     foreach ($thumbnails as $thumbImage) {
         $dv .= '<li>';
         $dv .= "<img class='thumbCarList' src='$thumbImage[imgPath]' alt='Image of $thumbImage[imgName] on phpmotors.com'>"; 
         $dv .= '</li>'; 
-        }
+    }
     $dv .= "</ul></div>";
+    $dv .= "<br><div id='reviewsContainer'><h3 class='reviewsHeader'>Customer Reviews</h3><br>";
 
+    // Build the review container, if logged in, 
+    if($_SESSION['loggedin']) {
+        $screenName = substr($_SESSION['clientData']['clientFirstname'], 0,1) . $_SESSION['clientData']['clientLastname'];
+        $dv .= '<br>
+                <h3> Review the ' . $carId['invMake'] . ' ' . $carId['invModel'] . '</h3>
+                <br>
+                <form action="/phpmotors/reviews/index.php" method="POST">
+                    <label for="screenName">Screen Name:</label><br>
+                    <input type="text" name="screenName" id="screenName" value="' . $screenName . '" readonly><br>
+                    <label for="reviewText">Review:</label><br>
+                    <textarea name="reviewText" id="reviewText" cols="100" rows="8" required></textarea><br><br>
+                    <input type="submit" name="submit" value="Post Review">
+                    <input type="hidden" name="invId" value="' . $carId['invId'] . '">
+                    <input type="hidden" name="clientId" value="' . $_SESSION["clientData"]["clientId"] . '">
+                    <!-- Add the action name - value pair -->
+                    <input type="hidden" name="action" value="addReview">
+                </form>
+                <br>';
+        
+    } else {
+        $dv .= '<br>
+                    <h3> Review the ' . $carId['invMake'] . ' ' . $carId['invModel'] . '</h3>
+                    <br><p>You must <a href="/phpmotors/accounts?action=login" title="Login or Register with PHP Motors">login</a> to write a review.</p><br>';
+    }
 
+    if (!count($reviews)) {
+        $dv .= '<br><h4>Be the first to write a review.</h4>';
+    }
+    else {
+        
+        $dv .= '<br><div class="oldReview"><hr><h3>What others had to say..</h3>';
+        $reverse = array_reverse($reviews);
+        $i = count($reviews) -1;
+        foreach($reverse as $review) { 
+            $date = $review['reviewDate'];
+            $date = date("j F\, Y");
+            $oldScreenName = $screenNames[$i];
+            $i --;
+            $dv .= '<div class="reviewPost marginal"><b><i>' . $oldScreenName . '</i> wrote on ' . $date . ':</b> <br><p class="reviewText">' . $review["reviewText"] . '</p></div>'; 
+        }            
+        $dv .= '</div>'; 
+    }
+    
+    $dv .= "</div><span id='bottomShortcut'><a href='#backToTop' title='Jump to top of page'>Back to top</a></span>";
     return $dv;
 
 }
@@ -287,5 +339,22 @@ function resizeImage($old_image_path, $new_image_path, $max_width, $max_height) 
 
 } // ends resizeImage function
 
+function buildPastReviews($oldReviews, $cars) {
 
+    $i = 0;
+    
+    $dv = " ";
+    
+    foreach ($oldReviews as $review) {
+        $date = $review['reviewDate'];
+        $date = date("j F\, Y");
+        $dv .= "<p><b>" . $cars[$i] . "</b> (<i>Reviewed on " . $date . "</i>) : </p><span>" .
+            "<a href='/phpmotors/reviews/?action=editReview&text=" . urlencode($review['reviewText']) . 
+            "&car=" . urlencode($cars[$i]) . "&reviewId=" . urlencode($review['reviewId']) . "' title='Click to edit this review'>Edit</a> | <a href='/phpmotors/reviews/?action=confirmDelete&text=" . 
+            urlencode($review['reviewText']) . "&car=" . urlencode($cars[$i]) . "&reviewId=" . urlencode($review['reviewId']) . "' title='Click to delete this review'>Delete</a></span><br>";
+        $i ++;
+    }
+    
+    return $dv;
+}
 ?>

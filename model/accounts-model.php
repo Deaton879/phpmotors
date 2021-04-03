@@ -58,7 +58,6 @@ function updateClient($clientFirstname, $clientLastname, $clientEmail, $clientId
     return $rowsChanged;
 }
 
-
 // This function handles updating the user's password.
 
 function updatePass($clientPassword, $clientId) {

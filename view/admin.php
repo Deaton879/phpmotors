@@ -16,6 +16,8 @@
     if (isset($_SESSION['message'])) {
         $message = $_SESSION['message'];
         echo "<p class='error'>", $message, "</p>";
+        // Unset the Session Message
+        $_SESSION['message'] = NULL;
     }
     ?>
     <ul id="adminList">
@@ -31,4 +33,9 @@
                 <span><a href='/phpmotors/vehicles/' title='Click to manage vehicles'>Manage Vehicles</a></span></div>";
             }
         ?>
+    <div class='marginal'>
+        <h2>Manage your Product Reviews</h2>
+        <?php if (isset($buildPastReviews)) { echo $buildPastReviews; } ?>
+    </div>
+    
 <?php include $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/modules/footer.php'; ?>
